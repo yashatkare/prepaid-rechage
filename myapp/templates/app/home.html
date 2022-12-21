@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Home Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+      </head>
+<body>
+    <center>
+        <div class="container" style="margin-top: 100px;border: groove; border-radius:10px;width: 30%;">
+            <form action="{% url 'plans' %}" method="POST">
+                {% csrf_token%}
+                <table class="table">
+                    <thead>         
+                        <tr>
+                            <th><label>Phone number <span class="text-danger">*</span></label></th>
+                            <th><input type="tel" class="form-control" placeholder="Enter phone number" name="phoneno" required=""></th>
+                        </tr>
+                    </thead>
+                    <thead>                                      
+                        <tr>
+                            <th><label>Select your Operator<span class="text-danger">*</span></label></th>
+                            <th>
+                                <select name="operatorid" style="width: 100%;"> 
+                                    <option>---Select operator----</option>
+                                    {% for operator in operators %}
+                                    <option value="{{ operator.id }}">{{operator.operator_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </th>
+                        </tr>
+                    </thead>    
+                    <thead>
+                         <tr><td><button style="margin-left: 100%;">Submit</button></td></tr>
+                    </thead>
+                </table>
+            </form>
+        </div>
+    </center>
+</body>
+</html>
